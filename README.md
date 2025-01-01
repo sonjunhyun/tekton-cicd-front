@@ -31,3 +31,20 @@
 - 2. 데이터 타입 변경후에도 데이터 받지 못함
         b. 원인: views(조회 수)의 기본값으로 전부 0 으로 설정하였다 --> 0을 false로 인식해서 데이터를 못받아들임
             (해결) --> 기본 값 0을 1로 수정
+
+
+## 실행 명령어들
+- docker run -d --name=mongodb -p 17017:27017 --restart=always --network=devapp-net sushijin/mongodb:3.1
+- docker run -d --name=backend --network=devapp-net --restart=always -e PORT=8000 -e GUESTBOOK_DB_ADDR=mongodb:27017 sushijin/backend:10.4
+- docker run -d --name=frontend -p 3000:8000 --network=devapp-net --restart=always -e PORT=8000 -e GUESTBOOK_API_ADDR=backend:8000 sushijin/frontend:10.4
+
+- docker cp frontend:/frontend ~/LABs/project/
+- docker cp backend:/backend ~/LABs/project/
+
+- docker build -t sushijin/backend:10.4 .
+- docker tag sushijin/backend:10.4 sushijin/backend:10.4
+- docker push sushijin/backend:10.4
+
+- docker build -t sushijin/frontend:10.4 .
+- docker tag sushijin/frontend:10.4 sushijin/frontend:10.4
+- docker push sushijin/frontend:10.4
