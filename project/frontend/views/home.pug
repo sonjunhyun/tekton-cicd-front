@@ -1,0 +1,46 @@
+doctype html
+html
+    head
+        meta(charset='utf-8')
+        title 🌊소리바다_4.1🌊
+        meta(name='viewport', content='width=device-width, initial-scale=1')
+        link(rel='stylesheet', href='https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css', integrity='sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T', crossorigin='anonymous')
+        link(rel='stylesheet', href='css/style.css')
+        link(rel='stylesheet', href='https://fonts.googleapis.com/css?family=Consolas')
+    body
+        .header
+            .container
+                h1 
+                    a(href='/') 🌊Music Wave
+                a(href='https://www.instagram.com/sush1_boy/' target='_blank').text-muted Desigined by Sushijin
+            
+                include new.pug
+        .container.posts.mt-0
+            include list.pug
+
+        footer.fixed-bottom
+            p.text-left.text-muted.footer-text Designed by Sushijin / Copyright.2024.AWS7th 'Team_Music Wave'
+
+script.
+    function playSong(mp3Url, title, artist, imageUrl) {
+        console.log("Playing song with URL:", mp3Url); 
+        const player = document.getElementById('player');
+        const source = player.querySelector('source');
+    
+        
+        source.src = mp3Url;
+        player.load(); 
+        player.play();
+
+        //이건 곡 정보 업데이트 함수
+        document.getElementById('now-playing-title').textContent = title;
+        document.getElementById('now-playing-artist').textContent = artist;
+
+        //곡 재생 배경
+        const nowPlaying = document.querySelector('.now-playing');
+        nowPlaying.style.backgroundImage = `url('${imageUrl}')`; 
+        nowPlaying.style.backgroundSize = 'cover'; 
+        nowPlaying.style.backgroundPosition = 'center'; 
+    }
+
+    

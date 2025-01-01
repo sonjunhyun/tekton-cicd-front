@@ -1,0 +1,26 @@
+if messages.length > 0
+    for msg in messages
+        .card.my-3.col-12(onclick=`playSong('${msg.mp3}', '${msg.title}', '${msg.artist}', '${msg.image}')`)
+            .card-body.d-flex
+                img.img-box(src=msg.image, alt='image')
+                .ml-3.flex-grow-1
+                    h5.card-title #{msg.title}
+                    h6.card-subtitle.mb-2.text-muted #{msg.slength}
+                    p.card-text #{msg.artist}
+                    h10.card-text #{msg.mp3}
+                    
+
+else
+    p.alert.alert-info(role='alert')
+        | There is currently no data in the guestbook.
+
+
+script.
+    document.addEventListener('DOMContentLoaded', function() {
+        const cards = document.querySelectorAll('.card');
+        cards.forEach((card, index) => {
+            setTimeout(() => {
+                card.classList.add('visible');
+            }, index * 200);
+        });
+    });

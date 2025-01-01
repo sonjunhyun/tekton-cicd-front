@@ -1,0 +1,249 @@
+body {
+    font-family: 'Roboto', sans-serif;
+    background: #000;
+}
+
+.container {
+    margin-top: 1px; /* .header 높이만큼 패딩 추가 */
+    background: #000;
+    border-radius: 10px;
+    z-index: 10;
+    position: relative;
+    padding: 10px 16px;
+    
+}
+
+.container.posts.mt-0 {
+    padding-top: 385.797px; /* .header 때문에 마진을 0으로 설정 */
+}
+
+.next-logo {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 0.5;
+    z-index: -1;
+    width: 30%
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+.header .container {
+    background: none;
+}
+
+.form-inline {
+    margin-bottom: 1px;
+    display: flex; /* 플렉스 박스 사용 */
+    flex-wrap: wrap; /* 줄 바꿈 허용 */
+}
+
+.input-group {
+    flex: 1; /* 입력 필드가 공간을 균등하게 차지하도록 설정 */
+    min-width: 150px; /* 최소 너비 설정 */
+    margin-right: 10px; /* 오른쪽 마진 추가 */
+    display: none;
+}
+
+button.btn {
+    background-color: #39FF14; /* 형광 녹색 배경 */
+    color: black; /* 버튼 텍스트 색상 설정 */
+    width: 100%; /* 버튼이 전체 너비를 차지하도록 설정 */
+    margin-top: 10px; /* 위쪽 마진 추가 */
+    border: none; /* 기본 테두리 제거 */
+    border-radius: 5px; /* 버튼 모서리 둥글게 */
+    padding: 10px; /* 버튼 내부 여백 추가 */
+    transition: background-color 0.3s; /* 색상 변화에 애니메이션 추가 */
+    font-family: 'BD Supper', sans-serif;
+    display:none;
+}
+
+button.btn:hover {
+    background-color: #28B700; /* 마우스 오버 시 약간 어두운 형광 녹색 */
+}
+h1 {
+    margin-bottom: 2rem;
+    max-width: 1140px;
+    margin: auto;
+    padding-bottom: 16px;
+    position: relative;
+    color: white;
+    
+}
+
+.card-body {
+    margin: 1px;
+    display: flex;
+    align-items: center; /* 수직 중앙 정렬 */
+   
+}
+  
+.posts:after {
+    background: linear-gradient(to right, #4285f4 25%,#db4437 25%, #db4437 50%, #f4b400 50%, #f4b400 75%, #0f9d58 75%);
+    position: absolute;
+    content: '';
+    height: 4px;
+    right: 0;
+    left: 0;
+    top: 0;
+}
+
+.card {
+    border: none;
+    box-shadow: 0px 4px 8px 0px rgba(255, 255, 255, 0.6), 0px 2px 4px 0px rgba(255, 255, 255, 0.4), 0px 1px 10px 0px rgba(255, 255, 255, 0.3);
+    display: inline-block;
+    background: #000;
+
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.github {
+    max-width: 80px;
+    opacity: 0.5;
+}
+
+.github:hover {
+    opacity: 1;
+}
+
+h5 {
+    font-size: 24px;
+    color: aliceblue;
+}
+
+h6 {
+    font-size: 18px;
+    color: aliceblue;
+    float: right;
+}
+
+p {
+    font-size: 14px;
+    color: aliceblue;
+    margin-top: 1rem !important;
+}
+
+h1 a {
+    color: white;
+    font-size: 60px;
+}
+
+h10 {
+    color: white;
+    font-size: 1px;
+    display: none;
+}
+
+.header {
+    position: fixed; /* 고정 위치 설정 */
+    top: 0; /* 상단에 고정 */
+    left: 0; /* 왼쪽에 고정 */
+    right: 0; /* 오른쪽에 고정 */
+    z-index: 1000; /* 다른 요소들 위에 위치하도록 설정 */
+    background: rgba(0, 0, 0, 0.8); /* 배경색을 약간 투명하게 설정 */
+    
+}
+
+@font-face {
+    font-family: 'BD Supper';
+    src: url('fonts/BD-Supper.ttf') format('truetype'); /* 폰트 파일 경로 */
+    font-weight: normal;
+    font-style: normal;
+}
+
+@media (min-width: 1200px) {
+    .container {
+        max-width: 900px;
+        padding-top: 10px;
+        padding-left: 50px;
+        padding-right: 50px;
+        padding-bottom: 0px;
+    }
+}
+
+@media (max-width: 480px) {
+    h1 a {
+        font-size: 40px;
+    }
+}
+
+.img-box {
+    width: 100px;
+    height: 100px;
+    border-radius: 10px; /* 원하는 값으로 둥글기를 조정 */
+    overflow: hidden; /* 내용이 둥근 모서리 안으로 잘리게 함 */
+    margin-right: 10px;
+}
+
+.card.my-3.col-12:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+
+    box-shadow: 0px 8px 16px 0px rgba(255, 255, 255, 0.8), 
+                0px 4px 8px 0px rgba(255, 255, 255, 0.6), 
+                0px 2px 20px 0px rgba(255, 255, 255, 0.5);
+
+    
+}
+.flex-grow-1 {
+    flex-grow: 1; /* 남는 공간을 차지하도록 설정 */
+}
+
+.audio-player {
+    display: block; /* 오디오 플레이어와 제목 사이에 여백 추가 */
+}
+
+h11 {
+    display: block;
+    font-size: 24px;
+    color: aliceblue;
+}
+
+.now-playing {
+    position: relative;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.now-playing h5, .now-playing p {
+    position: relative; /* 텍스트가 이미지 위에 올 수 있도록 설정 */
+    z-index: 1;
+    text-shadow: 2px 2px 4px black;
+}
+
+.now-playing.mt-3 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.5));
+    background-size: cover;  /* 이미지가 전체 배경을 덮도록 */
+    background-position: center;  /* 이미지가 중앙에 위치하도록 */
+    color: white; /* 텍스트 색상도 흰색으로 */
+    padding: 20px; /* 적절한 패딩 추가 */
+    
+}
+
+
+footer.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: #000;
+    color: white;
+    z-index: 1000; /* 다른 요소들 위에 표시되도록 설정 */
+}
+
+footer p.footer-text {
+    margin: 0;
+    font-size: 15px;
+    text-align: left;  /* 텍스트를 왼쪽 정렬 */
+    padding-left: 14px; /* 왼쪽 여백 추가 */
+}

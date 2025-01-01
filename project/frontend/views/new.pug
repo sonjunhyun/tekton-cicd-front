@@ -1,0 +1,44 @@
+form.form-inline(action="/post", method="POST")
+    .input-group.mb-2.mr-sm-2
+        .input-group-prepend
+            .input-group-text Title
+        input#title.form-control(type="text", name="title", required="")
+    .input-group.mb-2.mr-sm-2
+        .input-group-prepend
+            .input-group-text Artist
+        input#artist.form-control(type="text", name="message", required="")
+    .input-group.mb-2.mr-sm-2
+        .input-group-prepend
+            .input-group-text Length
+        input#length.form-control(type="text", name="slength", required="")
+    .input-group.mb-2.mr-sm-2
+        .input-group-prepend
+            .input-group-text Image
+        input#image.form-control(type="text", name="image", placeholder="Enter image URL", required="")
+    
+    button.btn.btn-primary.mb-2(type="submit") Pass to MongoDB
+
+h1#now-playing-status 🙄 Not Playing... 🙄
+.now-playing.mt-3
+    h5#now-playing-title No Title
+    p#now-playing-artist  No Artist
+
+    .audio-player.mt-3
+        audio#player(controls)
+            source(src='', type='audio/mpeg')/
+
+script.
+    const player = document.getElementById('player');
+    const statusElement = document.getElementById('now-playing-status');
+
+    player.addEventListener('play', () => {
+        statusElement.textContent = '🔥 Now Playing... 🔥';
+    });                            
+
+    player.addEventListener('pause', () => {
+            statusElement.textContent = '🤐 Paused...     🤐';
+    });
+
+    player.addEventListener('ended', () => {
+        statusElement.textContent = '🙄 Not Playing... 🙄';
+    });
