@@ -1,4 +1,4 @@
-# Patch Note (10.6)
+# Patch Note (10.6 / 3.1)
 
 ## Front
 -다크 모드 토글 추가
@@ -24,7 +24,7 @@
 - docker tag sushijin/frontend:10.6 sushijin/frontend:10.6
 - docker push sushijin/frontend:10.6
 
-# Patch Note (1.1)
+# Patch Note (10.4 /3.1)
 
 ## Front
 - Back에서 데이터 리스트 잘 받아와지는지 확인 후 개선
