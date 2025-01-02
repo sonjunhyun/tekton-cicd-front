@@ -43,6 +43,9 @@ script.
         nowPlaying.style.backgroundImage = `url('${imageUrl}')`; 
         nowPlaying.style.backgroundSize = 'cover'; 
         nowPlaying.style.backgroundPosition = 'center'; 
+
+        const songData = { mp3Url, title, artist, imageUrl };
+        localStorage.setItem('currentSong', JSON.stringify(songData));
     }
 
     // 다크모드 토글 스크립트 추가
@@ -66,4 +69,16 @@ script.
                 localStorage.setItem('darkMode', 'light');
             }
         });
+
+        const savedSong = localStorage.getItem('currentSong');
+        if (savedSong) {
+            const { mp3Url, title, artist, imageUrl } = JSON.parse(savedSong);
+            console.log("Restoring song:", title);
+            playSong(mp3Url, title, artist, imageUrl);
+        }
+    });
+
+    window.addEventListener('beforeunload', () => {
+        localStorage.removeItem('currentSong');
+        localStorage.removeItem('currentTime');
     });
