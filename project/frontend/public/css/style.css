@@ -1,3 +1,20 @@
+.theme-switch {
+    display: flex;
+    align-items: center;
+    margin-left: auto;
+}
+
+.theme-switch label {
+    margin-right: 8px;
+    font-size: 14px;
+    color: white;
+}
+
+#dark-mode-toggle {
+    transform: scale(1.2); /* 체크박스 크기 조정 */
+}
+
+
 body {
     font-family: 'Roboto', sans-serif;
     background: #000;
@@ -32,6 +49,10 @@ a:hover {
 
 .header .container {
     background: none;
+}
+
+.header .container .d-flex.align-items-center a{
+    font-size: 14px;
 }
 
 .form-inline {
@@ -247,3 +268,76 @@ footer p.footer-text {
     text-align: left;  /* 텍스트를 왼쪽 정렬 */
     padding-left: 14px; /* 왼쪽 여백 추가 */
 }
+
+/* 다크모드 적용 사항*/
+body.dark-mode {
+    background: white;
+}
+
+
+
+body.dark-mode .card {
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.6), 0px 2px 4px 0px rgba(0, 0, 0, 0.4), 0px 1px 10px 0px rgba(0, 0, 0, 0.3);
+    background: white;
+}
+
+body.dark-mode .card.my-3.col-12:hover{
+    transform: scale(1.05);
+    transition: transform 0.3s ease-in-out;
+
+    box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.8), 
+                0px 4px 8px 0px rgba(0, 0, 0, 0.6), 
+                0px 2px 20px 0px rgba(0, 0, 0, 0.5);
+
+    
+}
+
+body.dark-mode footer.fixed-bottom {
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    background-color: white;
+    color: black;
+    z-index: 1000; /* 다른 요소들 위에 표시되도록 설정 */
+}
+
+body.dark-mode .footer-text {
+    color: #ffffff;
+}
+
+body.dark-mode .theme-switch label {
+    margin-right: 8px;
+    font-size: 14px;
+    color: black;
+}
+
+
+
+
+body.dark-mode .img-box {
+
+    box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.8); /* 얇은 회색 그림자 추가 */
+}
+
+body.dark-mode h5.card-title,
+body.dark-mode p.card-text {
+    color: black;
+}
+
+body.dark-mode .now-playing.mt-3 {
+    box-shadow: 0px 4px 8px 0px rgba(0, 0, 0, 0.6), 0px 2px 4px 0px rgba(0, 0, 0, 0.4), 0px 1px 10px 0px rgba(0, 0, 0, 0.3);
+
+}
+
+body.dark-mode .header{
+        background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(255, 255, 255, 1));
+}
+
+body.dark-mode .container{
+    background: none;
+}
+/*
+body.dark-mode .container {
+    background: white;
+}
+*/

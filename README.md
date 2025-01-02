@@ -1,3 +1,29 @@
+# Patch Note (10.6)
+
+## Front
+-다크 모드 토글 추가
+
+
+
+## 실행 명령어들
+- ./run.sh
+- ./delete.sh
+- 
+- docker run -d --name=mongodb -p 17017:27017 --restart=always --network=devapp-net sushijin/mongodb:3.1
+- docker run -d --name=backend --network=devapp-net --restart=always -e PORT=8000 -e GUESTBOOK_DB_ADDR=mongodb:27017 sushijin/backend:10.6
+- docker run -d --name=frontend -p 3000:8000 --network=devapp-net --restart=always -e PORT=8000 -e GUESTBOOK_API_ADDR=backend:8000 sushijin/frontend:10.6
+- 
+- docker cp frontend:/frontend ~/LABs/project/
+- docker cp backend:/backend ~/LABs/project/
+- 
+- docker build -t sushijin/backend:10.6 .
+- docker tag sushijin/backend:10.6 sushijin/backend:10.6
+- docker push sushijin/backend:10.6
+- 
+- docker build -t sushijin/frontend:10.6 .
+- docker tag sushijin/frontend:10.6 sushijin/frontend:10.6
+- docker push sushijin/frontend:10.6
+
 # Patch Note (1.1)
 
 ## Front

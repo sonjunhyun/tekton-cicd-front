@@ -12,14 +12,17 @@ html
             .container
                 h1 
                     a(href='/') 🌊Music Wave
-                a(href='https://www.instagram.com/sush1_boy/' target='_blank').text-muted Desigined by Sushijin
-            
+                    .d-flex.align-items-center
+                        a(href='https://www.instagram.com/sush1_boy/' target='_blank').text-muted.mx-2 Desigined by Sushijin
+                        .theme-switch
+                            label(for='dark-mode-toggle').text-light.mx-2 Mode
+                            input#dark-mode-toggle(type='checkbox')
                 include new.pug
         .container.posts.mt-0
             include list.pug
 
         footer.fixed-bottom
-            p.text-left.text-muted.footer-text Designed by Sushijin / Copyright.2024.AWS7th 'Team_Music Wave'
+            p.text-left.text-muted.footer-text Designed by Sushijin / Copyright.2024.AWS7th 'Team_Music Wave (3.1 / 4.1)'
 
 script.
     function playSong(mp3Url, title, artist, imageUrl) {
@@ -27,20 +30,40 @@ script.
         const player = document.getElementById('player');
         const source = player.querySelector('source');
     
-        
         source.src = mp3Url;
         player.load(); 
         player.play();
 
-        //이건 곡 정보 업데이트 함수
+        // 곡 정보 업데이트 함수
         document.getElementById('now-playing-title').textContent = title;
         document.getElementById('now-playing-artist').textContent = artist;
 
-        //곡 재생 배경
+        // 곡 재생 배경
         const nowPlaying = document.querySelector('.now-playing');
         nowPlaying.style.backgroundImage = `url('${imageUrl}')`; 
         nowPlaying.style.backgroundSize = 'cover'; 
         nowPlaying.style.backgroundPosition = 'center'; 
     }
 
-    
+    // 다크모드 토글 스크립트 추가
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.getElementById('dark-mode-toggle');
+        const body = document.body;
+
+        // 저장된 모드 상태 확인 후 적용
+        const currentMode = localStorage.getItem('darkMode');
+        if (currentMode === 'dark') {
+            body.classList.add('dark-mode');
+            toggle.checked = true;
+        }
+
+        toggle.addEventListener('change', () => {
+            if (toggle.checked) {
+                body.classList.add('dark-mode');
+                localStorage.setItem('darkMode', 'dark');
+            } else {
+                body.classList.remove('dark-mode');
+                localStorage.setItem('darkMode', 'light');
+            }
+        });
+    });
