@@ -36,19 +36,16 @@ script.
     });                            
 
     player.addEventListener('pause', () => {
-            statusElement.textContent = '🤐 Paused...     🤐';
+        statusElement.textContent = '🤐 Paused...     🤐';
     });
 
     player.addEventListener('ended', () => {
         statusElement.textContent = '🙄 Not Playing... 🙄';
     });
 
-    player.addEventListener('timeupdate', () => {
-    localStorage.setItem('currentTime', player.currentTime);
+    window.addEventListener('beforeunload', () => {
+        const player = document.getElementById('player');
+        if (player) {
+            localStorage.setItem('currentTime', player.currentTime);
+        }
     });
-
-    // 페이지 로드 후 재생 위치 복원
-    const savedTime = localStorage.getItem('currentTime');
-    if (savedTime) {
-        player.currentTime = parseFloat(savedTime);
-    }

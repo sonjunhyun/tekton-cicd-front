@@ -31,24 +31,42 @@ script.
         const source = player.querySelector('source');
     
         source.src = mp3Url;
-        player.load(); 
-        player.play();
+        player.load();
 
-        // 곡 정보 업데이트 함수
+        // 곡 정보 업데이트
         document.getElementById('now-playing-title').textContent = title;
         document.getElementById('now-playing-artist').textContent = artist;
 
-        // 곡 재생 배경
         const nowPlaying = document.querySelector('.now-playing');
-        nowPlaying.style.backgroundImage = `url('${imageUrl}')`; 
-        nowPlaying.style.backgroundSize = 'cover'; 
-        nowPlaying.style.backgroundPosition = 'center'; 
+        nowPlaying.style.backgroundImage = `url('${imageUrl}')`;
+        nowPlaying.style.backgroundSize = 'cover';
+        nowPlaying.style.backgroundPosition = 'center';
 
+        // 저장된 재생 시간 복원
+        const savedSong = localStorage.getItem('currentSong');
+        if (savedSong) {
+            const savedData = JSON.parse(savedSong);
+            if (savedData.mp3Url === mp3Url) {
+                const savedTime = localStorage.getItem('currentTime');
+                if (savedTime) {
+                    player.currentTime = parseFloat(savedTime);
+                    console.log(`Resuming from ${savedTime} seconds`);
+                }
+            }
+        }
+
+        player.play();
+
+        // 현재 노래 정보 저장
         const songData = { mp3Url, title, artist, imageUrl };
         localStorage.setItem('currentSong', JSON.stringify(songData));
+
+        // 재생 위치 저장
+        player.addEventListener('timeupdate', () => {
+            localStorage.setItem('currentTime', player.currentTime);
+        });
     }
 
-    // 다크모드 토글 스크립트 추가
     document.addEventListener('DOMContentLoaded', function() {
         const toggle = document.getElementById('dark-mode-toggle');
         const body = document.body;
@@ -69,16 +87,11 @@ script.
                 localStorage.setItem('darkMode', 'light');
             }
         });
-
-        const savedSong = localStorage.getItem('currentSong');
-        if (savedSong) {
-            const { mp3Url, title, artist, imageUrl } = JSON.parse(savedSong);
-            console.log("Restoring song:", title);
-            playSong(mp3Url, title, artist, imageUrl);
-        }
     });
 
     window.addEventListener('beforeunload', () => {
-        localStorage.removeItem('currentSong');
-        localStorage.removeItem('currentTime');
+        const player = document.getElementById('player');
+        if (player) {
+            localStorage.setItem('currentTime', player.currentTime);
+        }
     });
