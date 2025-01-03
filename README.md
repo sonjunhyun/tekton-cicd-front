@@ -83,6 +83,34 @@
 - docker tag sushijin/frontend:10.6 sushijin/frontend:10.6
 - docker push sushijin/frontend:10.6
 
+
+# Patch Note (10.5 / 3.1)
+
+## Front
+-재생 상태 표시 추가
+-무음 상태에서도 재생상태 체크 가능
+
+
+
+## 실행 명령어들
+- ./run.sh
+- ./delete.sh
+- 
+- docker run -d --name=mongodb -p 17017:27017 --restart=always --network=devapp-net sushijin/mongodb:3.1
+- docker run -d --name=backend --network=devapp-net --restart=always -e PORT=8000 -e GUESTBOOK_DB_ADDR=mongodb:27017 sushijin/backend:10.5
+- docker run -d --name=frontend -p 3000:8000 --network=devapp-net --restart=always -e PORT=8000 -e GUESTBOOK_API_ADDR=backend:8000 sushijin/frontend:10.5
+- 
+- docker cp frontend:/frontend ~/LABs/project/
+- docker cp backend:/backend ~/LABs/project/
+- 
+- docker build -t sushijin/backend:10.5 .
+- docker tag sushijin/backend:10.5 sushijin/backend:10.6
+- docker push sushijin/backend:10.5
+- 
+- docker build -t sushijin/frontend:10.5 .
+- docker tag sushijin/frontend:10.5 sushijin/frontend:10.5
+- docker push sushijin/frontend:10.5
+
 # Patch Note (10.4 /3.1)
 - 다크모드 추가 - dark()를 통한 구현
 ## Front
