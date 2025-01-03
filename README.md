@@ -1,3 +1,35 @@
+# Patch Note (10.12 / 3.1)
+
+## Front
+- list에 Lazy Loading 적용(필요한 곳만 렌더링)
+- 브라우저의 IntersectionObserver지원 유무 확인 후 (지원하지 않으면 전체 한번에 렌더링)
+- 성능 향상
+
+## Back
+- 동일
+
+
+## 실행 명령어들
+- ./run.sh
+- ./delete.sh
+- 
+- docker run -d --name=mongodb -p 17017:27017 --restart=always --network=devapp-net sushijin/mongodb:3.1
+- docker run -d --name=backend --network=devapp-net --restart=always -e PORT=8000 -e GUESTBOOK_DB_ADDR=mongodb:27017 sushijin/backend:10.12
+- docker run -d --name=frontend -p 3000:8000 --network=devapp-net --restart=always -e PORT=8000 -e GUESTBOOK_API_ADDR=backend:8000 sushijin/frontend:10.12
+- 
+- docker cp frontend:/frontend ~/LABs/project/
+- docker cp backend:/backend ~/LABs/project/
+- 
+- docker build -t sushijin/backend:10.12 .
+- docker tag sushijin/backend:10.6 sushijin/backend:10.12
+- docker push sushijin/backend:10.12
+- 
+- docker build -t sushijin/frontend:10.12 .
+- docker tag sushijin/frontend:10.12 sushijin/frontend:10.12
+- docker push sushijin/frontend:10.12
+
+
+
 # Patch Note (10.11 / 3.1)
 
 ## Front

@@ -1,8 +1,10 @@
 if messages.length > 0
     for msg in messages
-        .card.my-3.col-12(onclick=`playSong('${msg.mp3}', '${msg.title}', '${msg.artist}', '${msg.image}')`)
+        // 카드에 Lazy Loading 적용
+        .card.my-3.col-12.lazy(onclick=`playSong('${msg.mp3}', '${msg.title}', '${msg.artist}', '${msg.image}')`, data-src-image=msg.image)
             .card-body.d-flex
-                img.img-box(src=msg.image, alt='image')
+                // 이미지 로드 후 나타나게 함
+                img.img-box(src='', alt='image', class='lazy-img')
                 .ml-3.flex-grow-1
                     h5.card-title #{msg.title}
                     h6.card-subtitle.mb-2.text-muted #{msg.slength}
@@ -13,11 +15,34 @@ else
         | There is currently no data in the guestbook.
 
 script.
+    // Lazy Loading 스크립트
     document.addEventListener('DOMContentLoaded', function() {
-        const cards = document.querySelectorAll('.card');
-        cards.forEach((card, index) => {
-            setTimeout(() => {
+        const lazyCards = document.querySelectorAll('.card'); // 카드만 감지
+
+        if ('IntersectionObserver' in window) {
+            const cardObserver = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const card = entry.target;
+                        const img = card.querySelector('.lazy-img');
+                        // 이미지 src 설정
+                        img.src = card.dataset.srcImage;
+                        img.classList.add('loaded');
+                        card.classList.add('visible'); // 카드 애니메이션 추가
+                        observer.unobserve(card); // 감시 중단
+                    }
+                });
+            });
+
+            // 모든 카드 감시 시작
+            lazyCards.forEach(card => cardObserver.observe(card));
+        } else {
+            // IntersectionObserver 미지원 브라우저 대체 처리
+            lazyCards.forEach(card => {
+                const img = card.querySelector('.lazy-img');
+                img.src = card.dataset.srcImage;
+                img.classList.add('loaded');
                 card.classList.add('visible');
-            }, index * 200);
-        });
+            });
+        }
     });
