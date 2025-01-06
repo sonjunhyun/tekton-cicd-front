@@ -1,5 +1,5 @@
 # Patch Note (10.12 / 3.1)
-
+- 2025.01.07 수정본 배포
 ## Front
 - list에 Lazy Loading 적용(필요한 곳만 렌더링)
 - 브라우저의 IntersectionObserver지원 유무 확인 후 (지원하지 않으면 전체 한번에 렌더링)
