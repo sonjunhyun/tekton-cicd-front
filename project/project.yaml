@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: frontend
-        image: sushijin/frontend:10.13
+        image: 192.168.1.169:443/project/frontend:10.13
         ports:
         - containerPort: 8000
         env:
@@ -22,6 +22,8 @@ spec:
           value: "8000"
         - name: GUESTBOOK_API_ADDR
           value: "backend:8000"
+      imagePullSecrets:
+        - name: harbor-credential
 ---
 apiVersion: v1
 kind: Service
@@ -53,7 +55,7 @@ spec:
     spec:
       containers:
       - name: backend
-        image: sushijin/backend:10.13
+        image: 192.168.1.169:443/project/backend:10.13
         ports:
         - containerPort: 8000
         env:
@@ -61,6 +63,8 @@ spec:
           value: "8000"
         - name: GUESTBOOK_DB_ADDR
           value: "mongodb:17017"
+      imagePullSecrets:
+        - name: harbor-credential
 ---
 apiVersion: v1
 kind: Service
@@ -90,9 +94,11 @@ spec:
     spec:
       containers:
       - name: mongodb
-        image: sushijin/mongodb:3.1
+        image: 192.168.1.169:443/project/mongodb:3.1
         ports:
         - containerPort: 27017
+      imagePullSecrets:
+        - name: harbor-credential
 ---
 apiVersion: v1
 kind: Service
