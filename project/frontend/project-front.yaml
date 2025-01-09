@@ -22,6 +22,8 @@ spec:
           value: "8000"
         - name: GUESTBOOK_API_ADDR
           value: "backend:8000"
+      imagePullSecrets:
+        - name: harbor-credential
 ---
 apiVersion: v1
 kind: Service
